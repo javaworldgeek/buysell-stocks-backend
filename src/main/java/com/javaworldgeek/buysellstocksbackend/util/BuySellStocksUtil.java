@@ -21,8 +21,4 @@ public class BuySellStocksUtil {
 		return TransactionType.values()[new Random().nextInt(StockStatus.values().length-1)];
 	}//end of getRandomStockStatus
 	
-	public static void main(String[] args) {
-		System.out.println(getRandomStockStatus());	
-	}
-	
 }
