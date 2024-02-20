@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import com.javaworldgeek.buysellstocksbackend.entity.Product;
 import com.javaworldgeek.buysellstocksbackend.entity.StockStatus;
-import com.javaworldgeek.buysellstocksbackend.entity.TransactionType;
 import com.javaworldgeek.buysellstocksbackend.service.BuySellStocksService;
 import com.javaworldgeek.buysellstocksbackend.util.BuySellStocksUtil;
 
