@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +63,12 @@ public class BuySellStocksController {
 	public void deleteAllProducts() {
 		LOGGER.info("Inside delete all method");
 		buySellStockServ.deleteAllProductsServ();
+	}
+	
+	@PutMapping("/doBuySellStocks")
+	public void doBuySellStocks() {
+		LOGGER.info("Inside doBuySellStocks method");
+		buySellStockServ.doBuySellServ();
 	}
 	
 }//end of BuySellStocksController
