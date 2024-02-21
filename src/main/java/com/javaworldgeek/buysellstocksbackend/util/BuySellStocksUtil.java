@@ -13,8 +13,8 @@ public class BuySellStocksUtil {
 	}//end of genRandomProdQuantity
 	
 	public static int genRandomProdPrice() {
-		int result = new Random().nextInt(11) * 100 + new Random().nextInt(11) * 50;
-		return result <= 0 ? genRandomProdPrice() : result;	
+		int[] intArr = {950, 800, 1200, 1350, 600, 350};
+		return intArr[new Random().nextInt(intArr.length)];
 	}//end of genRandomProdQuantity
 	
 	public static TransactionType getRandomStockStatus() {
