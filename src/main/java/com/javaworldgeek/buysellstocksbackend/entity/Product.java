@@ -21,6 +21,7 @@ public class Product {
 	private TransactionType transType;
 	private StockStatus stockSts;
 	
+	public Product() {}
 	public Product(
 			String name, 
 			int quantity, 
