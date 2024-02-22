@@ -32,7 +32,7 @@ public class BuySellStocksController {
 	
 	private final BuySellStocksService buySellStockServ;
 	
-	private final int NUM_THREDS = 10;
+	private final int NUM_THREADS = 10;
 
 	@CrossOrigin
 	@GetMapping
@@ -53,12 +53,12 @@ public class BuySellStocksController {
 	public void doBulkExecution() {
 		LOGGER.info("Inside bulk execution");
 		
-		ExecutorService executor = Executors.newFixedThreadPool(NUM_THREDS);
+		ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
 		int price = BuySellStocksUtil.genRandomProdPrice();
 		
-		for(int exe=0; exe<NUM_THREDS; exe++) {
+		for(int exe=0; exe<NUM_THREADS; exe++) {
 			executor.execute(new ProductBulkExecutorTask(buySellStockServ, price));
-		}
+		}//end of for
 		
 		executor.shutdown();
 	}//end of doBulkExecution
@@ -68,13 +68,13 @@ public class BuySellStocksController {
 	public void deleteAllProducts() {
 		LOGGER.info("Inside delete all method");
 		buySellStockServ.deleteAllProductsServ();
-	}
+	}//end of deleteAllProducts
 
 	@CrossOrigin
 	@PutMapping("/doBuySellStocks")
 	public void doBuySellStocks() {
 		LOGGER.info("Inside doBuySellStocks method");
 		buySellStockServ.doBuySellServ();
-	}
+	}//end of doBuySellStocks
 	
 }//end of BuySellStocksController
