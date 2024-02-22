@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,19 +33,22 @@ public class BuySellStocksController {
 	private final BuySellStocksService buySellStockServ;
 	
 	private final int NUM_THREDS = 10;
-	
+
+	@CrossOrigin
 	@GetMapping
 	public List<Product> findAllProducts(){
 		LOGGER.info("Find all products");
 		return buySellStockServ.findAllProductsServ();
 	}//end of findAllProducts
-	
+
+	@CrossOrigin
 	@PostMapping
 	public Product addProduct(@RequestBody Product product) {
 		LOGGER.info("Product add: {}", product);
 		return buySellStockServ.addProductServ(product);
 	}//end of addProduct
-	
+
+	@CrossOrigin
 	@PostMapping("/execute")
 	public void doBulkExecution() {
 		LOGGER.info("Inside bulk execution");
@@ -58,13 +62,15 @@ public class BuySellStocksController {
 		
 		executor.shutdown();
 	}//end of doBulkExecution
-	
+
+	@CrossOrigin
 	@DeleteMapping("/deleteAll")
 	public void deleteAllProducts() {
 		LOGGER.info("Inside delete all method");
 		buySellStockServ.deleteAllProductsServ();
 	}
-	
+
+	@CrossOrigin
 	@PutMapping("/doBuySellStocks")
 	public void doBuySellStocks() {
 		LOGGER.info("Inside doBuySellStocks method");
