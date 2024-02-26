@@ -1,5 +1,6 @@
 package com.javaworldgeek.buysellstocksbackend.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,17 +20,24 @@ public class BuySellStocksService {
 	private final BuySellStocksRepository 
 		buySellStocksRepo;
 	
-	public List<Product> findAllProductsServ(){
-		return buySellStocksRepo.findAll();
-	}
+	public List<Product> findAllProductsServ(){		
+		
+		return buySellStocksRepo.findAll().stream()
+                .sorted(Comparator
+                		.comparing((Product p) -> 
+                		p.getStockSts().equals(StockStatus.OPEN) ? 0 : 
+                		p.getStockSts().equals(StockStatus.PARTIAL) ? 1 : 2)
+                		.thenComparing(Product::getQuantity, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+	}//end of findAllProductsServ
 	
 	public Product addProductServ(Product product) {
 		return buySellStocksRepo.insert(product);
-	}
+	}//end of addProductServ
 	
 	public void deleteAllProductsServ() {
 		buySellStocksRepo.deleteAll();
-	}
+	}//end of deleteAllProductsServ
 	
 	public void doBuySellServ() {
 		
@@ -96,4 +104,4 @@ public class BuySellStocksService {
 		
 	}//end of doBuySellServ
 	
-}
+}//end of BuySellStocksService
